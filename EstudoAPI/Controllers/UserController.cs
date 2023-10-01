@@ -16,8 +16,8 @@ namespace EstudoAPI.Controllers
         [HttpGet("users")]
         public IActionResult Get()
         {
-            var user = _context.Users.AsNoTracking().ToList();
-            return Ok(user);
+            var users = _context.Users.AsNoTracking().ToList();
+            return Ok(users);
         }
     }
 }
