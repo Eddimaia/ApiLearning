@@ -13,7 +13,7 @@ namespace EstudoAPI.Controllers
             _context = context;
         }
 
-        [HttpGet("categories")]
+        [HttpGet("v1/categories")]
         public IActionResult Get()
         {
             var cartegories = _context.Categories
