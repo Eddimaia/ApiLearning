@@ -9,7 +9,7 @@ namespace EstudoAPI.Controllers
         [HttpGet("")]
         public IActionResult Get()
         {
-            return Ok();
+            return Ok(new {online = true});
         }
     }
 }

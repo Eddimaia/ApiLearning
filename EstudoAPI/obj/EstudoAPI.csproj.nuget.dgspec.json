@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\CSharp\\ApiLearning\\EstudoApi\\EstudoAPI.csproj": {}
+    "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\EstudoAPI.csproj": {}
   },
   "projects": {
-    "C:\\dev\\CSharp\\ApiLearning\\EstudoApi\\EstudoAPI.csproj": {
+    "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\EstudoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\CSharp\\ApiLearning\\EstudoApi\\EstudoAPI.csproj",
+        "projectUniqueName": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\EstudoAPI.csproj",
         "projectName": "EstudoAPI",
-        "projectPath": "C:\\dev\\CSharp\\ApiLearning\\EstudoApi\\EstudoAPI.csproj",
+        "projectPath": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\EstudoAPI.csproj",
         "packagesPath": "C:\\Users\\Fadami\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\CSharp\\ApiLearning\\EstudoApi\\obj\\",
+        "outputPath": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fadami\\AppData\\Roaming\\NuGet\\NuGet.Config",

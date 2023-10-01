@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "idMcO+rfWTli6wWm0+XEes9LnNsDMAy23shlaLWnAnByOJQgRH8EMCIiM5t2LW5btgFrzBo/j9HXCLx+DW/8WQ==",
+  "dgSpecHash": "tYlKh/L13TOcd45GMfbW6lR3vXEQBmnJb6vSOOufCKlZtFsr1g4hw9k38VrPX5ogdcHrT0fcWwijLKXNv1bBUg==",
   "success": true,
-  "projectFilePath": "C:\\dev\\CSharp\\ApiLearning\\EstudoApi\\EstudoAPI.csproj",
+  "projectFilePath": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\EstudoAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fadami\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Fadami\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
