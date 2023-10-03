@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tYlKh/L13TOcd45GMfbW6lR3vXEQBmnJb6vSOOufCKlZtFsr1g4hw9k38VrPX5ogdcHrT0fcWwijLKXNv1bBUg==",
+  "dgSpecHash": "/RWG1bHIgG2WsLPanj7BNAoan/P3jTekVOVBifeArDi6ICG2pJ8G3TeDNcqc307ePlPcNdAZus0S2oLDMuJpAw==",
   "success": true,
   "projectFilePath": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\EstudoAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Fadami\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Fadami\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Fadami\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Fadami\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Fadami\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

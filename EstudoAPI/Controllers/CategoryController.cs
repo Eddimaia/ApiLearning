@@ -1,4 +1,6 @@
-﻿using EstudoAPI.Data;
+﻿using AutoMapper;
+using EstudoAPI.Data;
+using EstudoAPI.DTO;
 using EstudoAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +11,11 @@ namespace EstudoAPI.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public CategoryController(AppDbContext context)
+        private readonly IMapper _mapper;
+        public CategoryController(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet("v1/categories")]
@@ -27,22 +31,31 @@ namespace EstudoAPI.Controllers
         [HttpGet("v1/categories/{id:int}")]
         public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
         {
-            var category = await _context.Categories
+            try
+            {
+                var category = await _context.Categories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cat => cat.Id.Equals(id));
 
             return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "MSG-E02.1 - Falha interna no servidor");
+            }
         }
 
         [HttpPost("v1/categories")]
-        public async Task<IActionResult> PostAsync([FromBody] Category model)
+        public async Task<IActionResult> PostAsync([FromBody] CreateCategoryDTO model)
         {
             try
             {
-                await _context.Categories.AddAsync(model);
+                var category = _mapper.Map<Category>(model);
+
+                await _context.Categories.AddAsync(category);
                 await _context.SaveChangesAsync();
 
-                return Created($"v1/categories/{model.Id}", model);
+                return Created($"v1/categories/{category.Id}", category);
             }
             catch (DbUpdateException ex)
             {
@@ -50,7 +63,7 @@ namespace EstudoAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "MSG-E02 - Falha interna no servidor");
+                return StatusCode(500, "MSG-E02.2 - Falha interna no servidor");
             }
 
         }
@@ -83,7 +96,7 @@ namespace EstudoAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "MSG-E02 - Falha interna no servidor");
+                return StatusCode(500, "MSG-E02.3 - Falha interna no servidor");
             }
         }
 
@@ -110,7 +123,7 @@ namespace EstudoAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "MSG-E02 - Falha interna no servidor");
+                return StatusCode(500, "MSG-E02.4 - Falha interna no servidor");
             }
         }
     }
