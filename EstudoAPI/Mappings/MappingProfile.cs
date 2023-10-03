@@ -8,7 +8,7 @@ namespace EstudoAPI.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<CreateCategoryDTO, Category>()
+            CreateMap<EditorCategoryDTO, Category>()
                 .ReverseMap();
         }
     }

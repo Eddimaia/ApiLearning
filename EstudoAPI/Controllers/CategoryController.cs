@@ -46,7 +46,7 @@ namespace EstudoAPI.Controllers
         }
 
         [HttpPost("v1/categories")]
-        public async Task<IActionResult> PostAsync([FromBody] CreateCategoryDTO model)
+        public async Task<IActionResult> PostAsync([FromBody] EditorCategoryDTO model)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace EstudoAPI.Controllers
         [HttpPut("v1/categories/{id:int}")]
         public async Task<IActionResult> PutAsync(
             [FromRoute] int id,
-            [FromBody] Category model)
+            [FromBody] EditorCategoryDTO model)
         {
             try
             {
@@ -82,8 +82,7 @@ namespace EstudoAPI.Controllers
                 if (category is null)
                     return NotFound();
 
-                category.Name = model.Name;
-                category.Slug = model.Slug;
+                _mapper.Map(model, category);
 
                 _context.Categories.Update(category);
                 await _context.SaveChangesAsync();
