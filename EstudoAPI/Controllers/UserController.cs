@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace EstudoAPI.Controllers
 {
     [ApiController]
-    [Route("v1/{controller}")]
+    [Route("api")]
     public class UserController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -13,7 +13,7 @@ namespace EstudoAPI.Controllers
         {
             _context = context;
         }
-        [HttpGet("users")]
+        [HttpGet("v1/users")]
         public IActionResult Get()
         {
             var users = _context.Users.AsNoTracking().ToList();

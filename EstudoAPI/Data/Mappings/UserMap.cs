@@ -25,18 +25,34 @@ public class UserMap : IEntityTypeConfiguration<User>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(80);
 
-        builder.Property(x => x.Bio);
-        builder.Property(x => x.Email);
-        builder.Property(x => x.Image);
-        builder.Property(x => x.PasswordHash);
-        builder.Property(x => x.GitHub);
+        builder.Property(x => x.Bio)
+            .IsRequired(false);
 
+        builder.Property(x => x.Email)
+            .IsRequired()
+            .HasColumnName("Email")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(160);
+
+        builder.Property(x => x.Image)
+            .IsRequired(false);
+
+        builder.Property(x => x.PasswordHash).IsRequired()
+            .HasColumnName("PasswordHash")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(255);
 
         builder.Property(x => x.Slug)
-                .IsRequired()
-                .HasColumnName("Slug")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(80);
+            .IsRequired()
+            .HasColumnName("Slug")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(80);
+
+        builder.Property(x => x.GitHub)
+            .IsRequired(false)
+            .HasColumnName("GitHub")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(255);
 
         // Índices
         builder

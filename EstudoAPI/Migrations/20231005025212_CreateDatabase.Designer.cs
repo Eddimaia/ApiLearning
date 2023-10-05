@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstudoAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231001032351_CreateDatabase")]
+    [Migration("20231005025212_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -78,7 +78,7 @@ namespace EstudoAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(60)
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2023, 10, 1, 3, 23, 51, 680, DateTimeKind.Utc).AddTicks(1029))
+                        .HasDefaultValue(new DateTime(2023, 10, 5, 2, 52, 12, 916, DateTimeKind.Utc).AddTicks(75))
                         .HasColumnName("LastUpdateDate");
 
                     b.Property<string>("Slug")
@@ -115,15 +115,22 @@ namespace EstudoAPI.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("NVARCHAR")
+                        .HasColumnName("Name");
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(80)
+                        .HasColumnType("NVARCHAR")
+                        .HasColumnName("Slug");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.HasIndex(new[] { "Slug" }, "IX_Role_Slug")
+                        .IsUnique();
+
+                    b.ToTable("Role", (string)null);
                 });
 
             modelBuilder.Entity("EstudoAPI.Models.Tag", b =>
@@ -156,19 +163,19 @@ namespace EstudoAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Bio")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(160)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("Email");
 
                     b.Property<string>("GitHub")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -179,7 +186,9 @@ namespace EstudoAPI.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("PasswordHash");
 
                     b.Property<string>("Slug")
                         .IsRequired()

@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
 using EstudoAPI.Data;
-using EstudoAPI.DTO;
+using EstudoAPI.Extensions;
 using EstudoAPI.Models;
+using EstudoAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EstudoAPI.Controllers
 {
     [ApiController]
+    [Route("api")]
     public class CategoryController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -21,11 +23,18 @@ namespace EstudoAPI.Controllers
         [HttpGet("v1/categories")]
         public async Task<IActionResult> GetAsync()
         {
-            var cartegories = await _context.Categories
+            try
+            {
+                var cartegories = await _context.Categories
                 .AsNoTracking()
                 .ToListAsync();
 
-            return Ok(cartegories);
+                return Ok(new ResultViewModel<List<Category>>(cartegories));
+            }
+            catch
+            {
+                return StatusCode(500, new ResultViewModel<List<Category>>("MSG-E02.0 - Falha interna no servidor"));
+            }
         }
 
         [HttpGet("v1/categories/{id:int}")]
@@ -37,17 +46,23 @@ namespace EstudoAPI.Controllers
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cat => cat.Id.Equals(id));
 
-            return Ok(category);
+                if(category is null)
+                    return NotFound(new ResultViewModel<Category>("Conteúdo não encontrado"));
+
+                return Ok(new ResultViewModel<Category>(category));
             }
-            catch (Exception ex)
+            catch
             {
-                return StatusCode(500, "MSG-E02.1 - Falha interna no servidor");
+                return StatusCode(500, new ResultViewModel<Category>("MSG-E02.1 - Falha interna no servidor"));
             }
         }
 
         [HttpPost("v1/categories")]
-        public async Task<IActionResult> PostAsync([FromBody] EditorCategoryDTO model)
+        public async Task<IActionResult> PostAsync([FromBody] EditorCategoryViewModel model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new ResultViewModel<Category>(ModelState.GetErrors()));
+
             try
             {
                 var category = _mapper.Map<Category>(model);
@@ -55,15 +70,15 @@ namespace EstudoAPI.Controllers
                 await _context.Categories.AddAsync(category);
                 await _context.SaveChangesAsync();
 
-                return Created($"v1/categories/{category.Id}", category);
+                return Created($"v1/categories/{category.Id}", new ResultViewModel<Category>(category));
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
-                return StatusCode(500, "MSG-E01.2 - Não foi possível incluir a categoria");
+                return StatusCode(500, new ResultViewModel<Category>("MSG-E01.2 - Não foi possível incluir a categoria"));
             }
-            catch (Exception ex)
+            catch
             {
-                return StatusCode(500, "MSG-E02.2 - Falha interna no servidor");
+                return StatusCode(500, new ResultViewModel<Category>("MSG-E02.2 - Falha interna no servidor"));
             }
 
         }
@@ -71,7 +86,7 @@ namespace EstudoAPI.Controllers
         [HttpPut("v1/categories/{id:int}")]
         public async Task<IActionResult> PutAsync(
             [FromRoute] int id,
-            [FromBody] EditorCategoryDTO model)
+            [FromBody] EditorCategoryViewModel model)
         {
             try
             {
@@ -89,13 +104,13 @@ namespace EstudoAPI.Controllers
 
                 return Ok(new { Result = "Atualizado com sucesso." });
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
-                return StatusCode(500, "MSG-E01.3 - Não foi possível atualizar a categoria");
+                return StatusCode(500, new ResultViewModel<Category>("MSG-E01.3 - Não foi possível atualizar a categoria"));
             }
-            catch (Exception ex)
+            catch
             {
-                return StatusCode(500, "MSG-E02.3 - Falha interna no servidor");
+                return StatusCode(500, new ResultViewModel<Category>("MSG-E02.3 - Falha interna no servidor"));
             }
         }
 
@@ -116,13 +131,13 @@ namespace EstudoAPI.Controllers
 
                 return Ok(new { Result = "Deletado com sucesso." });
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
-                return StatusCode(500, "MSG-E01.4 - Não foi possível deletar a categoria");
+                return StatusCode(500, new ResultViewModel<Category>("MSG-E01.4 - Não foi possível deletar a categoria"));
             }
-            catch (Exception ex)
+            catch
             {
-                return StatusCode(500, "MSG-E02.4 - Falha interna no servidor");
+                return StatusCode(500, new ResultViewModel<Category>("MSG-E02.4 - Falha interna no servidor"));
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using EstudoAPI.DTO;
 using EstudoAPI.Models;
+using EstudoAPI.ViewModels;
 
 namespace EstudoAPI.Mappings
 {
@@ -8,8 +8,18 @@ namespace EstudoAPI.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<EditorCategoryDTO, Category>()
+            CreateMap<EditorCategoryViewModel, Category>()
                 .ReverseMap();
+
+            CreateMap<EditorRoleViewModel, Role>()
+                .ReverseMap();
+
+            CreateMap<RegisterViewModel, User>()
+                .ForMember(destino => destino.Slug,
+                map => map.MapFrom(
+                    src => src.Email
+                    .Replace("@", "-")
+                    .Replace(".", "-")));
         }
     }
 }
