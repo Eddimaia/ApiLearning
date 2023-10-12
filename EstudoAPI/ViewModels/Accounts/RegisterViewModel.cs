@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EstudoAPI.ViewModels
+namespace EstudoAPI.ViewModels.Accounts
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage ="Nome é obrigatório")]
+        [Required(ErrorMessage = "Nome é obrigatório")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "E-mail é obrigatório")]

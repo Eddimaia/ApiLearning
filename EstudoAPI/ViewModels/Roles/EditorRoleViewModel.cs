@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EstudoAPI.ViewModels
+namespace EstudoAPI.ViewModels.Roles
 {
-    public class EditorCategoryViewModel
+    public class EditorRoleViewModel
     {
         [Required(ErrorMessage = "Name é obrigatório")]
         [StringLength(40, MinimumLength = 3, ErrorMessage = "Name deve conter entre 3 e 40 caracteres")]

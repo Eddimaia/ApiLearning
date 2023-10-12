@@ -3,6 +3,7 @@ using EstudoAPI.Data;
 using EstudoAPI.Extensions;
 using EstudoAPI.Models;
 using EstudoAPI.ViewModels;
+using EstudoAPI.ViewModels.Roles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

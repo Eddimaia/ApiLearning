@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "F1u7rYYruXmfLujw0kCjvcPMilodZuyXch8I4nOmim0=",
+  "Hash": "MJ5CPQ/i18oGr/2Q2Ya1dShCOptyfr/1gm+NeYnxVFA=",
   "Source": "EstudoAPI",
   "BasePath": "_content/EstudoAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "EstudoAPI\\wwwroot",
+      "Source": "EstudoAPI",
+      "ContentRoot": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\wwwroot\\",
+      "BasePath": "_content/EstudoAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

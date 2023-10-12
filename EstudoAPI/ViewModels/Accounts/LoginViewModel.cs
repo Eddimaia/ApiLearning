@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EstudoAPI.ViewModels
+namespace EstudoAPI.ViewModels.Accounts
 {
     public class LoginViewModel
     {

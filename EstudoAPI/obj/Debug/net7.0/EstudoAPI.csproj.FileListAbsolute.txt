@@ -108,6 +108,7 @@ C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\Microsoft.Win32.SystemEvent
 C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\SecureIdentity.dll
 C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\System.CodeDom.dll
 C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
 C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\System.Drawing.Common.dll
@@ -149,4 +150,4 @@ C:\dev\CSharp\ApiLearning\EstudoAPI\obj\Debug\net7.0\refint\EstudoAPI.dll
 C:\dev\CSharp\ApiLearning\EstudoAPI\obj\Debug\net7.0\EstudoAPI.pdb
 C:\dev\CSharp\ApiLearning\EstudoAPI\obj\Debug\net7.0\EstudoAPI.genruntimeconfig.cache
 C:\dev\CSharp\ApiLearning\EstudoAPI\obj\Debug\net7.0\ref\EstudoAPI.dll
-C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\SecureIdentity.dll
+C:\dev\CSharp\ApiLearning\EstudoAPI\bin\Debug\net7.0\EstudoAPI.staticwebassets.runtime.json

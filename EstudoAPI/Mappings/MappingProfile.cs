@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using EstudoAPI.Models;
-using EstudoAPI.ViewModels;
+using EstudoAPI.ViewModels.Accounts;
+using EstudoAPI.ViewModels.Categories;
+using EstudoAPI.ViewModels.Roles;
 
 namespace EstudoAPI.Mappings
 {
