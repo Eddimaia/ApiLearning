@@ -6,6 +6,7 @@ using EstudoAPI.ViewModels;
 using EstudoAPI.ViewModels.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace EstudoAPI.Controllers
 {
@@ -15,10 +16,12 @@ namespace EstudoAPI.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        public CategoryController(AppDbContext context, IMapper mapper)
+        private readonly IMemoryCache _cache;
+        public CategoryController(AppDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
 
         [HttpGet("v1/categories")]
@@ -26,17 +29,22 @@ namespace EstudoAPI.Controllers
         {
             try
             {
-                var cartegories = await _context.Categories
-                .AsNoTracking()
-                .ToListAsync();
+                var categories = _cache.GetOrCreate("CategoriesCache", entry =>
+                {
+                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1);
+                    return GetCategories();
+                });
 
-                return Ok(new ResultViewModel<List<Category>>(cartegories));
+                return Ok(new ResultViewModel<List<Category>>(categories));
             }
             catch
             {
                 return StatusCode(500, new ResultViewModel<List<Category>>("MSG-E02.0 - Falha interna no servidor"));
             }
         }
+
+        private List<Category> GetCategories()
+            => _context.Categories.AsNoTracking().ToList();
 
         [HttpGet("v1/categories/{id:int}")]
         public async Task<IActionResult> GetByIdAsync([FromRoute] int id)

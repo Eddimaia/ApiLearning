@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MJ5CPQ/i18oGr/2Q2Ya1dShCOptyfr/1gm+NeYnxVFA=",
+  "Hash": "RaF4fxswvrfNRVPjFg68FdIfukubHXxMh5f9tRT4yAA=",
   "Source": "EstudoAPI",
   "BasePath": "_content/EstudoAPI",
   "Mode": "Default",
@@ -15,5 +15,23 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\wwwroot\\images\\0ee45f90-0c3c-4fd0-9307-59f81823e100.jpg",
+      "SourceId": "EstudoAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\dev\\CSharp\\ApiLearning\\EstudoAPI\\wwwroot\\",
+      "BasePath": "_content/EstudoAPI",
+      "RelativePath": "images/0ee45f90-0c3c-4fd0-9307-59f81823e100.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\0ee45f90-0c3c-4fd0-9307-59f81823e100.jpg"
+    }
+  ]
 }

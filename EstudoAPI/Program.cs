@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,8 +59,14 @@ void ConfigureAuthentication(WebApplicationBuilder builder)
 void ConfigureMvc(WebApplicationBuilder builder)
 {
     builder.Services
+        .AddMemoryCache()
         .AddControllers()
-        .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true); //removendo a validação padrão dos controladores);
+        .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true)//removendo a validação padrão dos controladores)
+        .AddJsonOptions(jsonOptions =>
+        {
+            jsonOptions.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            jsonOptions.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+        }); 
 }
 
 void ConfigureServices(WebApplicationBuilder builder)
