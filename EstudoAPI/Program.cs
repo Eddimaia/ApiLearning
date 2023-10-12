@@ -2,8 +2,10 @@ using EstudoAPI;
 using EstudoAPI.Data;
 using EstudoAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.IO.Compression;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -21,6 +23,7 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseResponseCompression();
 app.UseStaticFiles();
 app.MapControllers();
 app.Run();
@@ -60,13 +63,21 @@ void ConfigureMvc(WebApplicationBuilder builder)
 {
     builder.Services
         .AddMemoryCache()
+        .AddResponseCompression(options =>
+        {
+            //options.Providers.Add<BrotliCompressionProvider>();
+            options.Providers.Add<GzipCompressionProvider>();
+            //options.Providers.Add<CustomCompressionProvider>();
+        })
         .AddControllers()
         .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true)//removendo a validação padrão dos controladores)
         .AddJsonOptions(jsonOptions =>
         {
             jsonOptions.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             jsonOptions.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
-        }); 
+        });
+
+    builder.Services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
 }
 
 void ConfigureServices(WebApplicationBuilder builder)
